@@ -9,15 +9,24 @@ module.exports = function(time, clientData){
   console.log(`It's now: ${t.getUTCDay()}, sending notification.`);
 
   switch(time){
+    // 12 AM PST
     case 6:
+      // Saturday
       if(day === 6) boss = [bossData[2]];
+      // Sunday
       if(day === 0) boss = [bossData[1]];
+      // Monday
       if(day === 1) boss = [bossData[0]];
+      // Tuesday
       if(day === 2) boss = [bossData[3]];
+      // Wednesday
       if(day === 3) boss = [bossData[0]];
+      // Thursday
       if(day === 4) boss = [bossData[3]];
+      // Friday
       if(day === 5) boss = [bossData[4]];
     break;
+    // 3 AM PST
     case 9:
       if(day === 6) boss = [bossData[4]];
       if(day === 0) boss = [bossData[3]];
@@ -27,6 +36,7 @@ module.exports = function(time, clientData){
       if(day === 4) boss = [bossData[1]];
       if(day === 5) boss = [bossData[0]];
     break;
+    // 7 AM PST
     case 13:
       if(day === 6) boss = [bossData[3]];
       if(day === 0) boss = [bossData[4]];
@@ -36,6 +46,7 @@ module.exports = function(time, clientData){
       if(day === 4) boss = [bossData[3]];
       if(day === 5) boss = [bossData[3]];
     break;
+    // 10 AM PST
     case 16:
       if(day === 6) boss = [bossData[4]];
       if(day === 0) boss = [bossData[1]];
@@ -45,6 +56,7 @@ module.exports = function(time, clientData){
       if(day === 4) boss = [bossData[4]];
       if(day === 5) boss = [bossData[0]];
     break;
+    // 2 PM PST
     case 20:
       if(day === 6) boss = [bossData[6], bossData[7]];
       if(day === 0) boss = [bossData[8]];
@@ -54,6 +66,7 @@ module.exports = function(time, clientData){
       if(day === 4) boss = [bossData[1]];
       if(day === 5) boss = [bossData[4]];
     break;
+    // 5 PM PST
     case 23:
       if(day === 6) boss = [bossData[0], bossData[1]];
       if(day === 0) boss = [bossData[5]];
@@ -63,6 +76,7 @@ module.exports = function(time, clientData){
       if(day === 4) boss = [bossData[3]];
       if(day === 5) boss = [bossData[1]];
     break;
+    // 8.15 PM PST
     case 3:
       if(day === 6) boss = null;
       if(day === 0) boss = [bossData[1], bossData[4]];
@@ -70,8 +84,9 @@ module.exports = function(time, clientData){
       if(day === 2) boss = [bossData[5]];
       if(day === 3) boss = [bossData[0], bossData[1]];
       if(day === 4) boss = [bossData[5]];
-      if(day === 5) boss = [bossData[1], bossData[3]];
+      if(day === 5) boss = [bossData[3], bossData[1]];
     break;
+    // 9.15 PM PST
     case 4:
       if(day === 6) boss = null;
       if(day === 0) boss = null;
@@ -81,14 +96,15 @@ module.exports = function(time, clientData){
       if(day === 4) boss = null;
       if(day === 5) boss = null;
     break;
+    // 10.15 PM PST
     case 5:
-      if(day === 6) boss = [bossData[0]];
-      if(day === 0) boss = [bossData[3], bossData[1]];
-      if(day === 1) boss = [bossData[4]];
-      if(day === 2) boss = [bossData[1], bossData[0]];
-      if(day === 3) boss = [bossData[0]];
-      if(day === 4) boss = [bossData[3], bossData[4]]
-      if(day === 5) boss = [bossData[0], bossData[3]]
+      if(day === 6) boss = [bossData[4], bossData[3]];
+      if(day === 0) boss = [bossData[0], bossData[3]];
+      if(day === 1) boss = [bossData[0]];
+      if(day === 2) boss = [bossData[3], bossData[1]];
+      if(day === 3) boss = [bossData[4]];
+      if(day === 4) boss = [bossData[1], bossData[0]];
+      if(day === 5) boss = [bossData[0]];
     break;
   }
 

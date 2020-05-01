@@ -1,0 +1,22 @@
+{
+  "name": "blob",
+  "version": "0.0.1",
+  "description": "A BDO Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "black desert online",
+    "bdo",
+    "discord",
+    "discord.js"
+  ],
+  "author": "ln2r",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "ontime": "0.0.6"
+  }
+}

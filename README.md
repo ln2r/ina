@@ -13,10 +13,10 @@ Template for the `config.json` file.
 ```json
   {
     "bot":{
-      "prefix": "!" // Default bot prefix (unused for now)
+      "prefix": "BOT_PREFIX_HERE"
     },
     "channel":{
-      "boss": "698182243897835610", // Message channel id for boss notification
+      "boss": "TEXT_CHANNEL_ID",
     }
   }
 ```

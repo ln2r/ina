@@ -1,26 +1,34 @@
 require('dotenv').config();
 
-const Discord = require('discord.js');
-const ontime = require('ontime');
+const { Collection } = require('discord.js');
+const fs = require('fs');
+const { discordClient } = require('./configs/discord.config');
+const { bossNotification } = require('./crons/boss.cron');
 
-const client = new Discord.Client();
-const services = require('./src/services/index.js');
+// commands
+discordClient.commands = new Collection();
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.command.js'));
 
-//const config = require('./config.json');
+for (const file of commandFiles) {
+  const command = require(`./commands/${file}`);
+  discordClient.commands.set(command.data.name, command);
+};
 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
+// events
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.event.js'));
 
-client.login(process.env.BLOB_DISCORD_TOKEN);
+for (const file of eventFiles) {
+  const event = require(`./events/${file}`);
 
-ontime({
-  cycle: ['06:30:00', '09:30:00', '13:30:00', '16:30:00', '20:30:00', '23:30:00', '03:45:00', '04:45:00', '05:45:00'],
-  utc: true,
-}, function(bossTime){
-  const t = new Date();
+  if (event.once) {
+    discordClient.once(event.name, (...args) => event.execute(...args));
+  } else {
+    discordClient.on(event.name, (...args) => event.execute(...args));
+  }
+};
 
-  services.sendBossNotification(t.getUTCHours(), client);
+// crons
+bossNotification(discordClient);
 
-  bossTime.done();
-})
+// discord login
+discordClient.login(process.env.DISCORD_TOKEN);
